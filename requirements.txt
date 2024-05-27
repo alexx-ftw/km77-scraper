@@ -1,0 +1,14 @@
+requests
+types-requests
+bs4
+types-beautifulsoup4
+tqdm
+types-tqdm
+aiofiles
+types-aiofiles
+aiohttp
+colored
+arq
+async_timeout
+ijson
+aiosqlite

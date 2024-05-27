@@ -1,0 +1,9 @@
+/package.json
+/km77.json
+/venv
+/.vscode
+/.mypy_cache
+/__pycache__
+/.venv
+/km77.log
+km77.db
