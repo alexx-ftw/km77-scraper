@@ -6,4 +6,5 @@
 /__pycache__
 /.venv
 /km77.log
-km77.db
+*.db
+*.db-journal

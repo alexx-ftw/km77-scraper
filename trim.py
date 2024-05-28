@@ -7,7 +7,6 @@ import logging
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    import aiosqlite
     from bs4 import ResultSet, Tag
 
     import model
@@ -43,7 +42,6 @@ class Trim:
 
     async def get_specops(
         self: Trim,
-        db: aiosqlite.Connection,
     ) -> None:
         """Get the data for a given trim."""
         if self.specs and self.options:
