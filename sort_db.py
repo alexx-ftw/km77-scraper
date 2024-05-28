@@ -18,6 +18,29 @@ async def main(
 ) -> None:
     """Filter the database according to various parameters."""
     logger.info("Connected to the database.")
+    # Check if the specs and options columns exist in the trims table
+    logger.info("Checking if the specs and options columns exist in the trims table...")
+    table_info = await db.execute_fetchall(
+        "PRAGMA table_info(trims)",
+    )
+    table_info = list(table_info)
+    if all(column[1] != "specs_source" for column in table_info):
+        logger.info("Adding the specs and options columns to the trims table...")
+        await db.execute(
+            "ALTER TABLE trims ADD COLUMN specs_source TEXT",
+        )
+        await db.commit()
+    else:
+        logger.info("The specs column already exists in the trims table.")
+    if all(column[1] != "options_source" for column in table_info):
+        logger.info("Adding the options column to the trims table...")
+        await db.execute(
+            "ALTER TABLE trims ADD COLUMN options_source TEXT",
+        )
+        await db.commit()
+    else:
+        logger.info("The options column already exists in the trims table.")
+
     trims_list = await db.execute_fetchall(
         "SELECT * FROM trims WHERE specs_source IS NULL AND options_source IS NULL",
     )
